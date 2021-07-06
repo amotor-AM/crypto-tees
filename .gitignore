@@ -1,0 +1,4 @@
+./crypto-tees-backend/node_modules
+./crypto-tees-frontend/node_modules
+.env
+./crypto-tees-backend/.env
