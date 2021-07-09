@@ -520,6 +520,12 @@ img.alt-image {
     padding: 1.5rem;
 }
 
+.product-size-button.forbidden {
+    background: #cdcdcd;
+    border: 1px solid #b4b4b4;
+    pointer-events: none;
+}
+
 .product-size {
     width: 30%;
     display: flex; 
@@ -617,6 +623,17 @@ img.alt-image {
 
 .add-to-cart {
     width: 80%
+}
+
+.size-text {
+    font-size: 1.5rem;
+    margin-top: -10px;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.size-red {
+    color: #a02020
 }
 
 /* Loading Screen */

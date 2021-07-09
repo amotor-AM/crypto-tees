@@ -18,7 +18,7 @@ const productDetailsReducer = (state = {product: {}, loading: true}, action) => 
         case constants.PRODUCT_DETAILS_REQUEST:
            return {loading: true}
         case constants.PRODUCT_DETAILS_SUCCESSFUL:
-            return {loading: false, product: action.payload}
+            return {loading: false, product: action.payload[0]}
         case constants.PRODUCT_DETAILS_FAILED:
             return {loading: false, error: action.payload}
         default:

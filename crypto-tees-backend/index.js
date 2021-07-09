@@ -1,5 +1,5 @@
-import server from "./api/server.js"
-import env from "dotenv"
+const server = require("./api/server.js")
+const env = require("dotenv") 
 const port = process.env.PORT || 5000
 
 server.listen(port, () => {

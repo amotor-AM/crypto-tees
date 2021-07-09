@@ -2,24 +2,21 @@ require('dotenv').config()
 
 const pg = require('pg')
 
-const db = 'www.google.com' //change
-
 if (process.env.DATABASE_URL) {
-  pg.defaults.ssl = { rejectUnauthorized: false }
+  // pg.defaults.ssl = { rejectUnauthorized: false }
 }
 
 const sharedConfig = {
   client: 'pg',
-  migrations: { directory: './database/api/data/migrations' },
-  seeds: { directory: './database/api/data/seeds' },
+  migrations: { directory: './database/data/migrations' },
+  seeds: { directory: './database/data/seeds' },
 }
 
 module.exports = {
   development: {
     ...sharedConfig,
     connection: {
-		connectionString: db,
-		ssl: {rejectUnauthorized: false}
+		connectionString: process.env.DEV_DATABASE_URL
 	  },
   },
   testing: {

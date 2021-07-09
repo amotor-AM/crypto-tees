@@ -1,6 +1,5 @@
 {
   "name": "crypto-tees",
-  "type": "module",
   "version": "1.0.0",
   "creator": "Alex Motor",
   "scripts": {
@@ -9,11 +8,11 @@
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback",
     "seed": "knex seed:run",
-    "migrateHeroku": "heroku run knex migrate:latest -a crypto-tees",
-    "rollbackHeroku": "heroku run knex migrate:rollback -a crypto-tees",
-    "databaseHeroku": "heroku pg:psql -a cryptotees",
-    "seedHeroku": "heroku run knex seed:run -a crypto-tees",
-    "deploy": "git push heroku main"
+    "migrateServer": "*SERVER INFORMATION*",
+    "rollbackServer": "*SERVER INFORMATION*",
+    "databaseServer": "*SERVER INFORMATION*",
+    "seedServer": "*SERVER INFORMATION*",
+    "deploy": "git push *SERVER*"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -26,6 +25,7 @@
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.95.6",
     "knex-cleaner": "^1.3.1",
+    "node": "^16.4.0",
     "pg": "^8.6.0",
     "postgres": "^1.0.2",
     "sqlite3": "^5.0.2"

@@ -12,12 +12,16 @@ function ProductScreen(props) {
     const {loading, error, product} = productDetails
     const dispatch = useDispatch()
     const productId = props.match.params.id
-
-    const [qty, setQty] = useState(1)
+    const [amountInStock, setAmountInStock] = useState(0)
     const [size, setSize] = useState("")
+    const [stock, setStock] = useState(0)
+    const [warning, setWarning] = useState(false)
+    const [qty, setQty] = useState(1)
+    const [sizeSelected, setSizeSelected] = useState(false)
 
     useEffect(() => {
         dispatch(productInfo(productId))
+        setAmountInStock(product.small + product.medium + product.large + product.Xlarge)  
     }, [dispatch, productId])
 
     const addToCartHandler = () => {
@@ -39,16 +43,16 @@ function ProductScreen(props) {
            <div className="row top">
               <div className="col-1">
                   <div className="product-images-container">
-                    <img className="large" src={product.image} alt={product.name}/>
+                    <img className="large" src={product.main_image} alt={product.name}/>
                     <div className="alt-photos">
                         <span className="alt">
-                            <img className="alt-image" src={product.image} alt={product.name}/>
+                            <img className="alt-image" src={product.main_image} alt={product.name}/>
                         </span>
                         <span className="alt">
-                            <img className="alt-image" src={product.image} alt={product.name}/>
+                            <img className="alt-image" src={product.main_image} alt={product.name}/>
                         </span>
                         <span className="alt">
-                            <img className="alt-image" src={product.image} alt={product.name}/>
+                            <img className="alt-image" src={product.main_image} alt={product.name}/>
                         </span>
                     </div>
                 </div>
@@ -65,19 +69,25 @@ function ProductScreen(props) {
                     </div>
                     <div className= "product-in-stock">
                         {
-                        product.countInStock > 0 
+                        amountInStock > 0 
                         ? <span className="success">In Stock</span>
                         : <span className="error">Sold Out</span>
                         }
                     </div>
                     {
-                        product.countInStock > 0 ? (
+                        amountInStock > 0 ? (
                             <>
                                 <div className="product-size">
-                                    <button className="product-size-button large" onClick={e => setSize("small")}>S</button>
-                                    <button className="product-size-button large" onClick={e => setSize("medium")}>M</button>
-                                    <button className="product-size-button large" onClick={e => setSize("large")}>L</button>
-                                    <button className="product-size-button large" onClick={e => setSize("Xlarge")}>XL</button>
+                                    <button className={`product-size-button large ${product.small === 0 || null ? "forbidden" : ""}`} onClick={e => {setSize("small"); setStock(product.small); setSizeSelected(true)}}>S</button>
+                                    <button className={`product-size-button large ${product.medium === 0 || null ? "forbidden" : ""}`} onClick={e => {setSize("medium"); setStock(product.medium); setSizeSelected(true)}}>M</button>
+                                    <button className={`product-size-button large ${product.large === 0 || null ? "forbidden" : ""}`} onClick={e => {setSize("large"); setStock(product.large); setSizeSelected(true)}}>L</button>
+                                    <button className={`product-size-button large ${product.Xlarge === 0 || null ? "forbidden" : ""}`} onClick={e => {setSize("Xlarge"); setStock(product.Xlarge); setSizeSelected(true)}}>XL</button>
+                                </div>
+                                <div className="size-text">
+                                    {sizeSelected
+                                    ? <p className={`size-${stock < 10 ? "red" : "normal"}`}>{`${stock} left in stock`}</p>
+                                    : <p className={`size-${warning ? "red": "normal"}`}>Please select a size</p>
+                                    }
                                 </div>
                                 <div className="product-button">
                                     {size.length > 0    
@@ -87,7 +97,7 @@ function ProductScreen(props) {
                                     <span className="product-dropdown-menu">
                                         <h3>QTY</h3>
                                         <select className="product-dropdown" value={qty} onChange={e => setQty(e.target.value)}>
-                                            {[...Array(product.countInStock).keys()].map(x => (
+                                            {[...Array(amountInStock).keys()].map(x => (
                                                 <option key={x+1} value={x+1}>{x+1}</option>
                                             ))}
                                         </select>   
