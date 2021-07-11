@@ -1,34 +1,25 @@
 const express = require("express")
 const cors = require("cors")
 const helmet = require("helmet")
+const dotenv = require("dotenv")
 const cookieParser = require("cookie-parser")
 // const restricted = "./middleware/restricted"
 // const data = require("./data.js")
 const productsRouter = require("../api/products/products-router")
+const usersRouter = require("../api/users/users-router")
+
+dotenv.config()
 
 const server = express()
 server.use(helmet())
 server.use(cors())
 server.use(express.json())
+server.use(express.urlencoded({extended: true}))
 server.use(cookieParser())
 
 // fetch data from PG database
 server.use("/api/products", productsRouter)
-
-// // fetch all products
-// server.get("/api/products", (req, res) => {
-//     res.send(data.products) // update products endpoint
-// })
-
-// //fetch product by id
-// server.get("/api/products/:id", (req, res) => {
-//     const product = data.products.find((x) => x._id === req.params.id)
-//     if(product){
-//         res.send(product)
-//     } else {
-//         res.status(404).send({message: "Product Does Not Exist."})
-//     }
-// })
+server.use("/api/users", usersRouter)
 
 // error catcher
 server.use((err, req, res, next) => {

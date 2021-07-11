@@ -19,9 +19,7 @@ async function addUser(userInfo){
     return newUser
 }
 
-async function removeUser(id){
-    await db("users").delete("*").where({id}).first()
-}
+
 
 module.exports = {
     getAllUsers,
