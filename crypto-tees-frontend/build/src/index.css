@@ -129,7 +129,7 @@ a:hover {
     color: #4D4DFF;
 }
 
-input {
+.checkout-tab > input {
     position: absolute;
     opacity: 0;
     z-index: -1;
@@ -421,6 +421,15 @@ header a{
     padding: 2rem 5rem;
 }
 
+.col-2.noSp {
+    margin: 0;
+    padding: 0;
+}
+
+.col-2.noSp.flex {
+    margin: auto 0;
+}
+
 /* Images */
 img {
     border-radius: 0.5rem 0.5rem 0 0;
@@ -449,6 +458,12 @@ img.alt-image {
 
 .product-images-container {
     display: flex;
+}
+
+.loginImage {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 
@@ -635,6 +650,104 @@ img.alt-image {
 .size-red {
     color: #a02020
 }
+
+/* Form */
+.form {
+    max-width: 60rem;
+    margin: 0 auto;
+}
+
+.form > div {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+}
+
+
+.formBackground {
+    margin: 0 auto;
+    max-width: 60rem;
+    padding-top: 2rem;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inputForm {
+    width: 80%;
+    height: 100%;
+    margin: 1rem auto;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.inputBox {
+    width: 100%;
+    height: 100%;
+    padding-top: 2rem;
+    border: none;
+    outline: none;
+}
+
+.loginForm {
+    width: 100%;
+}
+
+.inputForm .labelName {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    border-bottom: 1px solid black;
+}
+
+.inputForm .labelName::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    bottom: -1px;
+    border-bottom: 3px solid #4D4DFF;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.contentName {
+    position: absolute;
+    bottom: 5px;
+    left: 0px;
+    transition: all 0.3s ease;
+}
+
+.inputForm input:focus + .labelName .contentName, .inputForm input:valid +
+.labelName .contentName {
+    transform: translateY(-120%);
+    font-size: 1.4rem;
+    color: #4D4DFF;
+}
+
+.loginRegister {
+    padding: 2rem;
+    margin-left: -10%;
+}
+
+.inputForm input:focus + .labelName::after, .inputForm input:valid +
+.labelName::after {
+    transform: translateX(0%)
+}
+
+.errorBox {
+    width: 80%;
+    height: 2rem;
+    padding-left: 6rem;
+}
+
+
 
 /* Loading Screen */
 .loading-body {

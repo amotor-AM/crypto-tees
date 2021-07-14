@@ -1,8 +1,21 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { addToCart, removeFromCart } from '../../actions/cartActions';
 import {useDispatch, useSelector} from "react-redux";
 import {Link,BrowserRouter} from "react-router-dom";
+import {Formik} from "formik";
+import * as yup from "yup";
+import Form from "../utils/Form";
 
+const formSchema = yup.object().shape({
+    name: yup.string().required("Name can not be blank"),
+    email: yup.string().email("Email must be valid").required("Email required"),
+    street: yup.string().required("Street name and number required"),
+    apartment: yup.string(),
+    city: yup.string().required("City required"),
+    state: yup.string().required("State required"),
+    cardholder: yup.string().required("Card holder name"),
+    cardNumber: yup.string().required("Card Number required")
+})
 
 function CartScreen(props) {
     const productId = props.match.params.id
@@ -34,7 +47,7 @@ function CartScreen(props) {
                         <div clasName="checkout-tabs">
                             {/*Shipping tab*/}
                             <div className="checkout-tab">
-                                <input type="checkbox" id="chck1"/>
+                                <input type="checkbox" id="chck1" defaultChecked="true"/>
                                     <label className="checkout-tab-label" for="chck1">
                                         Shipping
                                     </label>
@@ -44,7 +57,7 @@ function CartScreen(props) {
                             </div>
                             {/*Payment tab*/}
                             <div className="checkout-tab">
-                                <input type="checkbox" id="chck2"/>
+                                <input type="checkbox" id="chck2" className="cartCheckBox"/>
                                     <label className="checkout-tab-label" for="chck2">
                                         Payment
                                     </label>
@@ -54,7 +67,7 @@ function CartScreen(props) {
                             </div>
                             {/*Order Review tab*/}
                             <div className="checkout-tab">
-                                <input type="checkbox" id="chck3"/>
+                                <input type="checkbox" id="chck3" className="cartCheckBox"/>
                                     <label className="checkout-tab-label" for="chck3">
                                         Review
                                     </label>
