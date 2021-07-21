@@ -161,7 +161,7 @@ a:hover {
     padding: 1rem 0 3rem 0;
 }
 
-.checkout-tab label {
+.checkout-tab .checkout-tab-label {
     display: flex;
     justify-content: space-between;
     padding: 1rem;
@@ -170,11 +170,11 @@ a:hover {
     cursor: pointer;
 }
 
-.checkout-tab label:hover {
+.checkout-tab .checkout-tab-label:hover {
     background: #0a0a10;
 }
 
-.checkout-tab label::after {
+.checkout-tab .checkout-tab-label::after {
     content: "";
     width: 1em;
     height: 1em;
@@ -204,7 +204,7 @@ a:hover {
     background: #0a0a10; 
 }
 
-input:checked + .checkout-tab-label {
+input[type="checkbox"]:checked + .checkout-tab-label {
     background: #0a0a10; 
 }
   
@@ -695,7 +695,8 @@ img.alt-image {
     width: 100%;
 }
 
-.inputForm .labelName {
+.inputForm .labelName,
+.input-box .labelName {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -705,7 +706,8 @@ img.alt-image {
     border-bottom: 1px solid black;
 }
 
-.inputForm .labelName::after {
+.inputForm .labelName::after,
+.input-box .labelName::after {
     content: "";
     position: absolute;
     height: 100%;
@@ -725,6 +727,8 @@ img.alt-image {
 }
 
 .inputForm input:focus + .labelName .contentName, .inputForm input:valid +
+.labelName .contentName,
+.input-box input:focus + .labelName .contentName, .input-box input:valid +
 .labelName .contentName {
     transform: translateY(-120%);
     font-size: 1.4rem;
@@ -746,6 +750,44 @@ img.alt-image {
     height: 2rem;
     padding-left: 6rem;
 }
+
+.container {
+    width: 100%;
+    padding: 2.5rem 3rem;
+}
+
+.container form .one-col,
+.container form .two-col,
+.container form .three-col  {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 2rem 0 1.2rem;
+}
+
+form .one-col .input-box {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    background: #000;
+}
+
+form .two-col .input-box {
+    width: calc(100% / 2.1);
+    margin-bottom: 1.5rem;
+    background: #000;
+}
+
+.input-box {
+    height: 100%;
+    background: #000;
+}
+
+form .three-col .input-box {
+    width: calc(100% / 3.2);
+    margin-bottom: 1.5rem;
+}
+
+
 
 
 
