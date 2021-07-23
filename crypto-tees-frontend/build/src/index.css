@@ -223,6 +223,12 @@ input:checked ~ .checkout-tab-content {
     padding-bottom: 1rem;
     border-bottom: 1px solid #1e1e2fe1;
 }
+
+.billing {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
   
 
 /* Button Styling */
@@ -308,7 +314,64 @@ button.block {
     cursor: pointer;
 }
 
+.button {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
 
+.checkout-button {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    padding: 0 30px;
+    font-size: 19px;
+    height: 40px;
+    line-height: 40px;
+    vertical-align: middle;
+    background: #4D4DFF;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    transition: .4s;
+    border: none;
+    cursor: pointer;
+}
+
+.checkout-button:before {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    border: none;
+    border-left: solid 21px white;
+    border-bottom: solid 41px transparent;
+    z-index: 1;
+    transition: .4s;
+}
+
+.checkout-button:after {
+    position: absolute;
+    content: '';
+    right: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    border: none;
+    border-left: solid 21px transparent;
+    border-bottom: solid 41px white;
+    z-index: 1;
+    transition: .4s;
+}
+
+.checkout-button:hover:before, .checkout-button:hover:after {
+    border-left-width: 25px;
+}
+
+.checkout-button:hover {
+    background: #0a0a10;
+}
 
 /* Alert */
 .success {
@@ -675,20 +738,22 @@ img.alt-image {
 }
 
 .inputForm, .container {
-    width: 80%;
+    width: 100%;
     height: 100%;
-    margin: 1rem auto;
+    margin: auto;
     padding: 0;
     position: relative;
-    overflow: hidden;
 }
 
 .inputBox {
     width: 100%;
     height: 100%;
-    padding-top: 2rem;
+    padding-top: 1.4rem;
+    padding-left: 1.4rem;
+    font-size: 2rem;
     border: none;
     outline: none;
+
 }
 
 .input-box {
@@ -709,7 +774,7 @@ img.alt-image {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    border-bottom: 1px solid black;
+    border: 1px solid black;
 }
 
 .input-box .labelName {
@@ -717,37 +782,17 @@ img.alt-image {
     bottom: 0;
     height: 100%;
     pointer-events: none;
-    border-bottom: 1px solid black;
+    border: 1px solid rgb(161, 161, 161);
 }
 
-.inputForm .labelName::after {
-    content: "";
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    left: 0;
-    bottom: -1px;
-    border-bottom: 3px solid #4D4DFF;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-}
-
-.input-box .labelName::after {
-    content: "";
-    position: absolute;
-    height: 100%;
-    left: 0;
-    bottom: -1px;
-    border-bottom: 3px solid #4D4DFF;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-}
 
 
 .contentName {
     position: absolute;
-    bottom: 5px;
-    left: 0px;
+    bottom: 0.7rem;
+    left: 0.7rem;
+    background: white;
+    padding: 0 0.7rem;
     transition: all 0.3s ease;
 }
 
@@ -755,7 +800,7 @@ img.alt-image {
 .labelName .contentName,
 .input-box input:focus + .labelName .contentName, .input-box input:valid +
 .labelName .contentName {
-    transform: translateY(-120%);
+    transform: translateY(-295%);
     font-size: 1.4rem;
     color: #4D4DFF;
 }
@@ -766,8 +811,12 @@ img.alt-image {
 }
 
 .inputForm input:focus + .labelName::after, .inputForm input:valid +
-.labelName::after, .input-box input:focus + .labelName::after, .input-box 
-input:valid + .labelName::after {
+.labelName::after {
+    transform: translateX(0%)
+}
+
+.input-box input:focus + .labelName::after, .input-box input:valid + 
+.labelName::after {
     transform: translateX(0%)
 }
 
@@ -780,6 +829,7 @@ input:valid + .labelName::after {
 .container {
     width: 100%;
     padding: 2.5rem 3rem;
+    overflow: hidden;
 }
 
 .container form .one-col,
@@ -787,8 +837,11 @@ input:valid + .labelName::after {
 .container form .three-col  {
     display: flex;
     flex-wrap: wrap;
+    max-width: 100%;
     justify-content: space-between;
-    margin: 2rem 0 1.2rem;
+    margin: 2rem;
+    margin-right: 7rem;
+    margin-left: 0;
     position: relative;
 }
 
@@ -820,8 +873,238 @@ form .three-col .input-box {
     width: calc(100% / 3.2);
 }
 
+/* Card styling (checkout page) */
+.container .card-wrapper {
+    width: 94.5%;
+    margin-top: -2rem;
+    padding-right: 7rem;
+    margin-left: 0;
+    height: 50rem;
+    overflow: hidden;
+}
+.card-section {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #1C1C25;
+    overflow: hidden;
+}
 
+.card-section:before {
+    content: "";
+    position: absolute;
+    bottom: 37%;
+    left: 60%;
+    width: 25rem;
+    height: 25rem;
+    background: linear-gradient(#4D4DFF, #3737fd);
+    border-radius: 50%;
+}
 
+.card-section:after {
+    content: "";
+    position: absolute;
+    bottom: 65%;
+    left: 20%;
+    width: 14rem;
+    height: 14rem;
+    background: linear-gradient(#4D4DFF, #3737fd);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.card {
+    position: relative;
+    width: 50.8rem;
+    height: 31.4rem;
+    transform-style: preserve-3d;
+    perspective: 500px;
+    background: transparent;
+    border: none;
+    z-index: 1;
+}
+
+.card .face {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 30px 30px 40px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.2);
+    -webkit-background-filter: blur(7px);
+    -moz-background-filter: blur(7px);
+    transform-style: preserve-3d;
+    transition: 1s;
+    backface-visibility: hidden;
+    backdrop-filter: blur(7px);
+}
+
+.card:hover .face.front {
+    transform: rotateY(180deg);
+}
+
+.card .face.back {
+    transform: rotateY(180deg)
+}
+
+.card:hover .face.back {
+    transform: rotateY(360deg);
+}
+
+.card .face.front::before {
+    content: "";
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    width: 60px;
+    height: 60px;
+    background: #FFFF;
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+.card .face.front::after {
+    content: "";
+    position: absolute;
+    bottom: 40px;
+    right: 80px;
+    width: 60px;
+    height: 60px;
+    background: #FFFF;
+    border-radius: 50%;
+    opacity: 0.7;
+}
+
+.card .face.front .debit {
+    position: absolute;
+    left: 4rem;
+    top: 3rem;
+    color: #FFFF;
+    font-weight: 500;
+}
+
+.card .face.front .bank {
+    position: absolute;
+    right: 40px;
+    top: 27px;
+    color: #FFFF;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 2.4rem;
+}
+
+.card .face.front .chip {
+    position: absolute;
+    top: 9rem;
+    left: 4rem;
+    max-width: 6.5rem;
+}
+
+.card .face.front .number {
+    position: absolute;
+    top: 11.3rem;
+    left: 12rem;
+    color: #FFFF;
+    font-weight: 500;
+    letter-spacing: 0.3rem;
+    font-size: 2rem;
+    text-shadow: 0 2px 1px #0005;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.card .face.front .valid {
+    position: absolute;
+    bottom: 11rem;
+    left: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    color: #FFFF;
+    font-weight: 300;
+    line-height: 1.6rem;
+    text-align: right;
+}
+
+.card .face.front .valid span:last-child {
+    margin-left: 2rem;
+    font-size: 1.6rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.card .face.front .cardHolder {
+    position: absolute;
+    bottom: 6.4rem;
+    left: 4rem;
+    color: #FFFF;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    font-weight: 200;
+}
+
+.card .face.back .security-strip {
+    position: absolute;
+    top: 4rem;
+    width: 100%;
+    height: 6rem;
+    background: #000;
+}
+
+.card .face.back .ccv-text {
+    position: absolute;
+    top: 12rem;
+    left: 3rem;
+}
+
+.card .face.back .ccv-text h5 {
+    color: #FFFF;
+    font-weight: 400;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.card .face.back .ccv-text .signatureBar {
+    position: relative;
+    width: 40rem;
+    height: 4rem;
+    background: #FFFF;
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.card .face.back .ccv-text .signatureBar .signature {
+    max-height: 85%;
+    margin-left: 3rem;
+}
+
+.card .face.back .ccv-text .ccv {
+    position: relative;
+    background: #CCCC;
+    color: #111;
+    width: 5rem;
+    left:39.5rem;
+    top: -3.5rem;
+    height: 3rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ccv-details-text {
+    position: absolute;
+    color: #CCCC;
+    font-size: 1.4rem;
+    top: 7rem;
+}
 
 
 /* Loading Screen */

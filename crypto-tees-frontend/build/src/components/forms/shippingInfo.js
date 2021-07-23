@@ -54,8 +54,12 @@ function ShippingInfo(props) {
                         </label>
                     </div>
                 </div>
+                <div className="one-col">
+                    <div className="button">
+                        <button className="checkout-button" type="submit">Continue</button>
+                    </div>
+                </div>
             </form>
-            
         </div>
     )
 }

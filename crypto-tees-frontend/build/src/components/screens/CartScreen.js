@@ -3,6 +3,7 @@ import { addToCart, removeFromCart } from '../../actions/cartActions';
 import {useDispatch, useSelector} from "react-redux";
 import {Link,BrowserRouter} from "react-router-dom";
 import ShippingInfo from "../forms/shippingInfo";
+import PaymentInfo from "../forms/paymentInfo";
 
 function CartScreen(props) {
     const productId = props.match.params.id
@@ -49,7 +50,7 @@ function CartScreen(props) {
                                         Payment
                                     </label>
                                     <div className="checkout-tab-content">
-                                        place Payment components here. Use Formik for form validatiaon
+                                        <PaymentInfo/>
                                     </div>
                             </div>
                             {/*Order Review tab*/}
