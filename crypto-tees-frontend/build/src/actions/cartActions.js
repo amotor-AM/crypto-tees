@@ -1,17 +1,17 @@
-import Axios from "axios";
 import * as constants from "../constants/cartConstants";
 
-export const addToCart = (productId, qty) => async (dispatch, getState) => {
-    const {data} = await Axios.get(`/api/products/${productId}`)
+export const addToCart = (data) => (dispatch, getState) => {
     dispatch({
         type: constants.ADD_ITEM_TO_CART,
-        payload:{
-            name: data.name,
-            image: data.image,
-            price: data.price,
-            countInStock: data.countInStock,
-            product: data._id,
-            qty,
+        payload: {
+            name: data.product.name,
+            image: data.product.main_image,
+            price: data.product.price,
+            id: data._id,
+            qty: data.qty,
+            size: data.size,
+            gender: data.gender,
+            countInStock: data.stock,
         }
     })
     localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems))
@@ -22,3 +22,11 @@ export const removeFromCart = (productId) => (dispatch, getState) => {
     localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems))
 }
 
+export const saveShippingAddress = (data) => (dispatch) => {
+    dispatch({type: constants.SAVE_SHIPPING_ADDRESS, payload: data})
+    localStorage.setItem("shippingAddress", JSON.stringify(data))
+}
+
+export const setPaymentMethod = (data) => (dispatch) => {
+    dispatch({type: constants.UPDATE_PAYMENT_INFO, payload: {data}})
+}

@@ -1,4 +1,4 @@
-const db = require("../../database/db")
+const db = require("../../database/db");
 
 async function createOrder(order) {
     const [newOrder] = await db("orders").insert(order, "*")

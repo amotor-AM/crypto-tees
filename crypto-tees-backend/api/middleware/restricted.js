@@ -29,4 +29,22 @@ const restricted = async(req, res, next) => {
     }
 }
 
-module.exports = restricted
+const isAuth = (req, res, next) => {
+    const authorization = req.headers.authorization
+    if(authorization) {
+        const token = authorization.slice(7, authorization.length)
+        jwt.verify(token, secret, (err, decoded) => {
+            if(err) {
+                res.status(401).send({message: "Invalid token"})
+            } else {
+                req.user = decoded
+                next
+            }
+        })
+    }
+}
+
+module.exports = {
+    restricted,
+    // isAuth
+}

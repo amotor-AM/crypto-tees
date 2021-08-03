@@ -1,8 +1,8 @@
-const router = require("express").Router()
-const jwt = require("jsonwebtoken")
-const bcrypt = require("bcryptjs")
-const dotenv = require("dotenv")
-const user = require("./users-model")
+const router = require("express").Router();
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+const dotenv = require("dotenv");
+const user = require("./users-model.js");
 
 dotenv.config()
 
@@ -33,7 +33,7 @@ router.post("/login", async (req, res, next) => {
         }
         if(!comparePasswords) {
             return res.status(401).json({
-                error: "password is incorrect"
+                message: "password is incorrect"
             })
         }
         const token = jwt.sign({
@@ -78,7 +78,7 @@ router.post("/register", async (req, res, next) => {
                 name: newUser.name,
                 email: newUser.email,
                 role: newUser.role,
-                message: `Welcome Back ${newUser.name}`,
+                message: `Welcome ${newUser.name}`,
                 token  
               })
               return
@@ -103,9 +103,9 @@ router.post("/logout", async (req, res, next) => {
             if(err) {
                 return res.setStatus(403)
             }
-            req.userInfo = userToken
+            req.userInfo = userToken 
         })
-        await user.setUserAsLoggedOut(req.userInfo.user)
+        await user.setUserAsLoggedOut(req.body)
         req.session.destroy((err) => {
             if(err) {
                 next(err)

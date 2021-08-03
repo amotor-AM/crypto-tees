@@ -17,15 +17,15 @@ function Product(props) {
         }
     }
     return (
-        <div key={product._id} className="card">
+        <div key={product._id} className="productCard">
             <Link to={`/product/${product._id}`}>
                 <img className="medium" src={product.main_image} alt={product.name} />
             </Link>
-            <div className="card-body">
+            <div className="productCard-body">
                 <Link to={`/product/${product._id}`}>   
                     <h2>{product.name}</h2>
                 </Link>
-                <div className="card-details">
+                <div className="productCard-details">
                     <Rating
                     rating = {product.rating}
                     numReviews = {product.numReviews}

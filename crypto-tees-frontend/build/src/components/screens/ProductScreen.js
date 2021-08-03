@@ -4,28 +4,33 @@ import {Link} from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import LoadingHex from "../LoadingHex";
 import MessageBox from "../MessageBox";
-import {productInfo} from '../../actions/productActions';
+import {productInfo} from "../../actions/productActions";
+import {addToCart} from "../../actions/cartActions";
 
 
 function ProductScreen(props) {
     const productDetails = useSelector((state) => state.productDetails)
     const {loading, error, product} = productDetails
+    console.log(product)
     const dispatch = useDispatch()
     const productId = props.match.params.id
     const [amountInStock, setAmountInStock] = useState(0)
     const [size, setSize] = useState("")
+    const [gender, setGender] = useState("male")
     const [stock, setStock] = useState(0)
     const [warning, setWarning] = useState(false)
     const [qty, setQty] = useState(1)
     const [sizeSelected, setSizeSelected] = useState(false)
+    console.log(product)
 
     useEffect(() => {
         dispatch(productInfo(productId))
         setAmountInStock(product.small + product.medium + product.large + product.Xlarge)  
-    }, [dispatch, productId])
-
+    }, [dispatch, productId, setAmountInStock])
     const addToCartHandler = () => {
-        props.history.push(`/cart/${productId}?qty=${qty}`)
+        const {_id} = product
+        const countForSize = product.size
+        dispatch(addToCart({_id, product, qty, size, gender, stock}))
     }
 
     return (

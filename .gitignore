@@ -3,3 +3,4 @@
 ./crypto-tees-frontend/build/node_modules
 .env
 ./crypto-tees-backend/.env
+*.json
